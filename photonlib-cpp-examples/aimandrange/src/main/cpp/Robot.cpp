@@ -80,7 +80,7 @@ void Robot::TeleopPeriodic() {
           targetYaw = units::degree_t{target.GetYaw()};
           // We make this negative because the X component of
           // `getBestCameraToTarget()` is negative by default
-          targetRange = -target.GetBestCameraToTarget().GetX();
+          targetRange = -target.GetBestCameraToTarget().X();
           targetVisible = true;
         }
       }
