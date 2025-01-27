@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
                     if (target.getFiducialId() == 7) {
                         // Found Tag 7, record its information
                         targetYaw = target.getYaw();
-                        // Me make this negative because the X component of
+                        // We make this negative because the X component of
                         // `getBestCameraToTarget()` is negative by default
                         targetRange = -target.getBestCameraToTarget().getX();
                         targetVisible = true;
