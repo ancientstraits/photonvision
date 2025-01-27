@@ -67,9 +67,9 @@ class MyRobot(wpilib.TimedRobot):
                     # Found tag 7, record its information
                     targetVisible = True
                     targetYaw = target.getYaw()
-                    heightDelta = CAM_MOUNT_HEIGHT_m - TAG_7_MOUNT_HEIGHT_m
-                    angleDelta = math.radians(CAM_MOUNT_PITCH_deg - target.getPitch())
-                    targetRange = heightDelta / math.tan(angleDelta)
+                    # We make this negative because the X component of
+                    # `getBestCameraToTarget()` is negative by default
+                    targetRange = -target.getBestCameraToTarget().X()
 
         if self.controller.getAButton() and targetVisible:
             # Driver wants auto-alignment to tag 7
