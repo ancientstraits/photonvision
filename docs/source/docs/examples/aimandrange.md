@@ -10,7 +10,7 @@ The following example is from the PhotonLib example repository ([Java](https://g
 
 Now that you know how to aim toward the AprilTag, let's also drive the correct distance from the AprilTag.
 
-To do this, we'll use the *pitch* of the target in the camera image and trigonometry to figure out how far away the robot is from the AprilTag. Then, like before, we'll use the P term of a PID controller to drive the robot to the correct distance.
+To do this, we'll use the *getBestCameraToTarget()* method of the target in the camera image to figure out how far away the robot is from the AprilTag. Then, like before, we'll use the P term of a PID controller to drive the robot to the correct distance.
 
 ```{eval-rst}
 .. tab-set::
