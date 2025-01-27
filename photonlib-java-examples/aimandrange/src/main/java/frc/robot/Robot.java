@@ -101,13 +101,9 @@ public class Robot extends TimedRobot {
                     if (target.getFiducialId() == 7) {
                         // Found Tag 7, record its information
                         targetYaw = target.getYaw();
-                        targetRange =
-                                PhotonUtils.calculateDistanceToTargetMeters(
-                                        0.5, // Measured with a tape measure, or in CAD.
-                                        1.435, // From 2024 game manual for ID 7
-                                        Units.degreesToRadians(-30.0), // Measured with a protractor, or in CAD.
-                                        Units.degreesToRadians(target.getPitch()));
-
+                        // Me make this negative because the X component of
+                        // `getBestCameraToTarget()` is negative by default
+                        targetRange = -target.getBestCameraToTarget().getX();
                         targetVisible = true;
                     }
                 }
