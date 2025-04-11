@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build-client:
-    name: "PhotonClient Build"
+    name: Compile the PhotonVision Frontend
     defaults:
       run:
         working-directory: photon-client
@@ -31,12 +31,13 @@ jobs:
         run: npm ci
       - name: Build Production Client
         run: npm run build
-      - uses: actions/upload-artifact@v4
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: built-client
           path: photon-client/dist/
+          
   build-examples:
-
     strategy:
       fail-fast: false
       matrix:
@@ -47,7 +48,7 @@ jobs:
             architecture: aarch64
           - os: ubuntu-22.04
 
-    name: "Photonlib - Build Examples - ${{ matrix.os }}"
+    name: "Photonlib - Build Examples for ${{ matrix.os }}"
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -74,7 +75,7 @@ jobs:
         working-directory: photonlib-cpp-examples
         run: ./gradlew build
   build-gradle:
-    name: "Gradle Build"
+    name: Compile the PhotonVision backend
     runs-on: ubuntu-22.04
     steps:
       # Checkout code.
