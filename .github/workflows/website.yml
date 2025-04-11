@@ -12,18 +12,21 @@ on:
 
 jobs:
   rsync:
+    name: Compile the landing page and deploy it to photonvision.org
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node
+      - name: Check out this repository
+        uses: actions/checkout@v4
+      - name: Setup NodeJS
         uses: actions/setup-node@v4
-      - name: Install packages
+      - name: Install NPM packages
         run: npm ci
         working-directory: website
-      - name: Build project
+      - name: Build the landing page
         run: npm run build
         working-directory: website
-      - uses: up9cloud/action-rsync@v1.4
+      - name: Deploy to website
+        uses: up9cloud/action-rsync@v1.4
         if: github.ref == 'refs/heads/main'
         env:
           HOST: ${{ secrets.WEBMASTER_SSH_HOST }}
